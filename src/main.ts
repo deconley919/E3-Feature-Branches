@@ -1,3 +1,10 @@
+// glasses.png drawn by me in Paint
+// @deno-types="./asset-url.d.ts"
+import glassesUrl from "./assets/Glasses.png?no-inline";
+// hat.png drawn by me in Paint
+// @deno-types="./asset-url.d.ts"
+import hatUrl from "./assets/Hat.png?no-inline";
+
 const portrait = document.querySelector<HTMLDivElement>("#portrait")!;
 const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 
@@ -5,7 +12,7 @@ function buildFace(): SVGSVGElement {
   const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   face.setAttribute("viewBox", "0 0 200 200");
   face.setAttribute("role", "img");
-  face.setAttribute("aria-label", "A neutral face");
+  face.setAttribute("aria-label", "A neutral face with glasses and a hat");
 
   const head = document.createElementNS(
     "http://www.w3.org/2000/svg",
@@ -61,6 +68,23 @@ function buildFace(): SVGSVGElement {
   mouth.setAttribute("stroke-width", "4");
   mouth.setAttribute("stroke-linecap", "round");
   face.append(mouth);
+
+  const glasses = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "image",
+  );
+  glasses.setAttribute("href", glassesUrl);
+  glasses.setAttribute("x", "20");
+  glasses.setAttribute("y", "20");
+  glasses.setAttribute("width", "170");
+  face.append(glasses);
+
+  const hat = document.createElementNS("http://www.w3.org/2000/svg", "image");
+  hat.setAttribute("href", hatUrl);
+  hat.setAttribute("x", "30");
+  hat.setAttribute("y", "-75");
+  hat.setAttribute("width", "150");
+  face.append(hat);
 
   return face;
 }
