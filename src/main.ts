@@ -59,6 +59,19 @@ mouth.setAttribute("stroke-width", "4");
 mouth.setAttribute("stroke-linecap", "round");
 face.append(mouth);
 
+for (let i = 0; i < 120; i++) {
+  const cheekX = i % 2 === 0 ? 68 : 132;
+  const freckle = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle",
+  );
+  freckle.setAttribute("cx", String(cheekX + (Math.random() * 44 - 22)));
+  freckle.setAttribute("cy", String(112 + (Math.random() * 32 - 16)));
+  freckle.setAttribute("r", "1.5");
+  freckle.setAttribute("fill", "#b5713f");
+  face.append(freckle);
+}
+
 portrait.append(face);
 
 spin.addEventListener("click", () => {
