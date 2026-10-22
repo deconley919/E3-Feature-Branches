@@ -5,14 +5,14 @@ const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 face.setAttribute("viewBox", "0 0 200 200");
 face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+face.setAttribute("aria-label", "A smiling face shaded from orange to red");
 
 const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "100");
 head.setAttribute("cy", "100");
 head.setAttribute("rx", "78");
 head.setAttribute("ry", "86");
-head.setAttribute("fill", "#f3cf87");
+head.setAttribute("fill", "url(#head-shade)");
 head.setAttribute("stroke", "#302c29");
 head.setAttribute("stroke-width", "4");
 face.append(head);
@@ -49,15 +49,36 @@ nose.setAttribute("stroke-width", "4");
 nose.setAttribute("stroke-linecap", "round");
 face.append(nose);
 
-const mouth = document.createElementNS("http://www.w3.org/2000/svg", "line");
-mouth.setAttribute("x1", "75");
-mouth.setAttribute("y1", "137");
-mouth.setAttribute("x2", "125");
-mouth.setAttribute("y2", "137");
+const mouth = document.createElementNS("http://www.w3.org/2000/svg", "path");
+mouth.setAttribute("d", "M 75 132 Q 100 155 125 132");
+mouth.setAttribute("fill", "none");
 mouth.setAttribute("stroke", "#302c29");
 mouth.setAttribute("stroke-width", "4");
 mouth.setAttribute("stroke-linecap", "round");
 face.append(mouth);
+
+const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+const headShade = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "radialGradient",
+);
+headShade.setAttribute("id", "head-shade");
+
+const centerStop = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "stop",
+);
+centerStop.setAttribute("offset", "0%");
+centerStop.setAttribute("stop-color", "#fc9357");
+headShade.append(centerStop);
+
+const edgeStop = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+edgeStop.setAttribute("offset", "100%");
+edgeStop.setAttribute("stop-color", "#790303");
+headShade.append(edgeStop);
+
+defs.append(headShade);
+face.append(defs);
 
 portrait.append(face);
 
