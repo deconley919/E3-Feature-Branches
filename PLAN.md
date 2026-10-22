@@ -22,3 +22,7 @@ Choosing criterion: reads clearly at a small size
 - Flat line mouth will change to a curved smile
 
 - Status: explored on branch 'C'.
+
+## Decision
+
+Chose branch B. The glasses and hat give the character a clear new look which is still noticeable at a smaller sice (assuming I would fix the hat clipping). A's freckles would be difficult to notice. C has a similar issue where the gradient is slightly harder to notice at a small scale. A & C remain on their respective branches.
